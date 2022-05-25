@@ -1,0 +1,22 @@
+{
+  "name": "googlechat",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^16.0.1",
+    "express": "~4.16.1",
+    "google-chat-webhook": "^1.0.0",
+    "googleapis": "^100.0.0",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.1",
+    "request-promise-native": "^1.0.9",
+    "unirest": "^0.6.0"
+  }
+}

@@ -1,0 +1,4 @@
+.env
+keys/*
+mocks
+test.js
