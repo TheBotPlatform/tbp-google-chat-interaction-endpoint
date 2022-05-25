@@ -26,13 +26,16 @@ var TBPInteractionEndpoint = function(config) {
             "Content-Type": "application/x-www-form-urlencoded"
         }
 
-        unirest
+        return unirest
             .post(url)
             .headers(headers)
             .send(payload)
             .then((response) => {
                 if (response.body === undefined) {
                     throw new Error("Can't connect to TBP");
+                }
+                if (response.body === "Unauthorized") {
+                    throw new Error("TBP API Credentials are incorrect");
                 }
                 lastToken = response.body.access_token;
                 lastTokenTime = Date.now();
@@ -59,11 +62,6 @@ var TBPInteractionEndpoint = function(config) {
                 .send(payload)
                 .then((response) => {
                     if (response.body === "Unauthorized") {
-                        console.log(token);
-                        console.log(TBP_CLIENT_ID);
-                        console.log(TBP_CLIENT_SECRET);
-
-
                         throw new Error("TBP API Credentials are incorrect");
                     }
                     cb(response.body);
@@ -72,6 +70,14 @@ var TBPInteractionEndpoint = function(config) {
 
 
     };
+
+    // test getting a bearer token
+    getBearerToken(function(token) {
+        console.log(token);
+    }).catch(function(e) {
+        console.log(e.message);
+        process.exit();
+    });
 
     return {
         getBearerToken: getBearerToken,

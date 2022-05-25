@@ -4,25 +4,32 @@ const { google } = require('googleapis');
 require('dotenv').config();
 
 
-const TBPInteractionEndpoint = require('./modules/thebotplatform-interaction-endpoint')({
-    clientID: process.env.TBP_CLIENT_ID,
-    clientSecret: process.env.TBP_CLIENT_SECRET
-});
+var main = async function() {
 
-TBPInteractionEndpoint.setConnector(
-    'googlechat', { tokenPath: process.env.GOOGLE_TOKEN_PATH }
-);
+    const TBPInteractionEndpoint = require('./modules/thebotplatform-interaction-endpoint')({
+        clientID: process.env.TBP_CLIENT_ID,
+        clientSecret: process.env.TBP_CLIENT_SECRET
+    });
 
-const app = express();
+    await TBPInteractionEndpoint.setConnector(
+        'googlechat', { tokenPath: process.env.GOOGLE_TOKEN_PATH }
+    );
 
-app.use(bodyParser.urlencoded({
-    extended: false
-}));
+    const app = express();
 
-app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({
+        extended: false
+    }));
 
-app.post('/', TBPInteractionEndpoint.connector.reactToEvent);
+    app.use(bodyParser.json());
 
-app.listen(8100, function() {
-    console.log('App listening on port 8100.');
-});
+    app.post('/', TBPInteractionEndpoint.connector.reactToEvent);
+
+    app.listen(process.env.EXPRESS_PORT_NUMBER, function() {
+        console.log('App listening on port ' + process.env.EXPRESS_PORT_NUMBER + '.');
+    });
+
+
+
+}
+main();
