@@ -1,8 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { google } = require('googleapis');
 require('dotenv').config();
-
 
 var main = async function() {
 
@@ -15,21 +13,10 @@ var main = async function() {
         'googlechat', { tokenPath: process.env.GOOGLE_TOKEN_PATH }
     );
 
-    const app = express();
+    TBPInteractionEndpoint.server.start(
+        "/",
+        process.env.EXPRESS_PORT_NUMBER
+    );
 
-    app.use(bodyParser.urlencoded({
-        extended: false
-    }));
-
-    app.use(bodyParser.json());
-
-    app.post('/', TBPInteractionEndpoint.connector.reactToEvent);
-
-    app.listen(process.env.EXPRESS_PORT_NUMBER, function() {
-        console.log('App listening on port ' + process.env.EXPRESS_PORT_NUMBER + '.');
-    });
-
-
-
-}
+};
 main();

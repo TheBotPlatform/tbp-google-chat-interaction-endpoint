@@ -1,5 +1,5 @@
 var unirest = require('unirest');
-
+const server = require('./server');
 
 var TBPInteractionEndpoint = function(config) {
 
@@ -9,7 +9,6 @@ var TBPInteractionEndpoint = function(config) {
     var lastToken = false;
     var lastTokenTime = 0;
     var TokenLifespan = 58 * 60;
-
 
     var getBearerToken = function(cb) {
         now = Date.now()
@@ -66,34 +65,35 @@ var TBPInteractionEndpoint = function(config) {
                     }
                     cb(response.body);
                 });
-        })
-
-
+        });
     };
 
     // test getting a bearer token
     getBearerToken(function(token) {
-        console.log(token);
+
     }).catch(function(e) {
         console.log(e.message);
         process.exit();
     });
 
     return {
+        server: require('./server'),
         getBearerToken: getBearerToken,
         createdUserID: createdUserID,
         getBotResponse: getBotResponse,
         getBotResponseAndSend: function(userID, thread, input) {
             var that = this;
             getBotResponse(userID, input, function(response) {
-                console.log(response);
                 that.sendMessages(thread, response.data.attributes.output);
             });
         },
         setConnector: async function(connector, config) {
             var connector = require('./chat-connectors/' + connector);
-            await connector.setup(config);
+            await connector.setup(config).catch(function() {
+                console.log('wsdwqdqwdqwd');
+            });
             connector.parent = this;
+            this.server.parent = this;
             this.connector = connector;
 
         },

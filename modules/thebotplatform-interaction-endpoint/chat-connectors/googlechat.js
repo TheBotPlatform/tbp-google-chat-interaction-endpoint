@@ -2,7 +2,8 @@ const { google } = require('googleapis');
 
 const chat = google.chat('v1');
 
-var TBPGoogleChatConnector = {
+var TBPConnector = {
+    name: 'googlechat',
     auth: async function(config) {
 
         if (typeof config !== "object") {
@@ -19,6 +20,8 @@ var TBPGoogleChatConnector = {
         // Acquire an auth client, and bind it to all future calls
         const authClient = await auth.getClient();
         return google.options({ auth: authClient });
+
+
     },
     sendMessage: async function(thread, message) {
         var res = await chat.dms.messages({
@@ -28,12 +31,11 @@ var TBPGoogleChatConnector = {
         });
     },
     setup: async function(config) {
-        return this.auth(config);
+        return this.auth(config)
     },
     renderButtons: function(buttons) {
         var rendered = [];
         for (var i in buttons) {
-            console.log(buttons[i]);
             var onClick = {};
             switch (buttons[i].type) {
                 case "open_url":
@@ -216,4 +218,4 @@ var TBPGoogleChatConnector = {
 }
 
 
-module.exports = TBPGoogleChatConnector
+module.exports = TBPConnector
