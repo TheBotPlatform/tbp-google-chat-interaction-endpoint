@@ -1,3 +1,6 @@
+# Google Chat Connector
+
+## Setup
 
 Visit Google Developer Console and create a new project
 
@@ -18,7 +21,7 @@ Functionality
 
 Connection settings
 - App URL
-- The url of this code base /
+- - The url of this code base
 
 Permissions
 - Specify who should have access to the bot
@@ -29,7 +32,9 @@ Download the .json file and place it in a keys folder
 
 Clone .env.example -> .env and update the parameters
 
-Points to note:
+Run `node app.js`
+
+## Points to note:
 - Inline video not supported
 - Inline audio not supported
 - Workaround for quick replies, card remains - annoying

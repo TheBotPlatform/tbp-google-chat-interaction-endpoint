@@ -21,7 +21,6 @@ var TBPConnector = {
         const authClient = await auth.getClient();
         return google.options({ auth: authClient });
 
-
     },
     sendMessage: async function(thread, message) {
         var res = await chat.dms.messages({
@@ -150,11 +149,9 @@ var TBPConnector = {
             return renderedCard;
         }
 
-
         for (var i = 0; i < cards.length; i++) {
             renderedCards.push(renderCard(cards[i]));
         }
-
 
         return this.sendMessage(thread, {
             cards: renderedCards
@@ -164,22 +161,25 @@ var TBPConnector = {
     reactToEvent: function(req, res) {
         var response = {};
         switch (req.body.type) {
+            // just a normal message
             case "MESSAGE":
-                this.parent.getBotResponseAndSend(
+                TBPConnector.parent.getBotResponseAndSend(
                     req.body.user.name,
                     req.body.space.name,
                     req.body.message.text
                 );
                 break;
+                // thread created, unsure how this would be impacted with broadcasts
             case "ADDED_TO_SPACE":
-                this.parent.sendWelcome(
+                TBPConnector.parent.sendWelcome(
                     req.body.user.name,
                     req.body.space.name
                 );
                 break;
+                // the event triggered by button presses
             case "CARD_CLICKED":
 
-                this.parent.getBotResponseAndSend(
+                thTBPConnectoris.parent.getBotResponseAndSend(
                     req.body.user.name,
                     req.body.space.name,
                     req.body.action.actionMethodName
@@ -216,6 +216,5 @@ var TBPConnector = {
         return res.json(response);
     }
 }
-
 
 module.exports = TBPConnector
