@@ -12,7 +12,6 @@ app.use(bodyParser.json());
 module.exports = {
     parent: undefined,
     start: function(path, port = false) {
-        console.log(this.parent);
         app.post(path, this.parent.connector.reactToEvent);
         if (port) {
             app.listen(port, function() {

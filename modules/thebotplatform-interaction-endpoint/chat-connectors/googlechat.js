@@ -121,7 +121,6 @@ var TBPConnector = {
         var renderedCards = [];
         var self = this;
         var renderCard = function(card) {
-            console.log(card);
             var renderedCard = {
                 sections: [{
                     header: card.title,
@@ -179,7 +178,7 @@ var TBPConnector = {
                 // the event triggered by button presses
             case "CARD_CLICKED":
 
-                thTBPConnectoris.parent.getBotResponseAndSend(
+                TBPConnector.parent.getBotResponseAndSend(
                     req.body.user.name,
                     req.body.space.name,
                     req.body.action.actionMethodName
