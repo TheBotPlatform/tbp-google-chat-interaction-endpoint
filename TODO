@@ -1,4 +1,3 @@
-- upload attachment ids for images
-- screen record it
-- github it
-- upload user attributes
+- explore deep linking
+- upload user attributes - would require another place for it
+- upload attachment ids for images - requires seperate file storage if using google app engine
