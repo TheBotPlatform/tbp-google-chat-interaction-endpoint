@@ -34,6 +34,9 @@ Clone .env.example -> .env and update the parameters
 
 Run `node app.js`
 
+Make sure you have setup the App URL here: https://console.cloud.google.com/apis/api/chat.googleapis.com/hangouts-chat
+
+
 ## Points to note:
 - Inline video not supported
 - Inline audio not supported
