@@ -75,4 +75,5 @@ Make sure you have setup the App URL here: https://console.cloud.google.com/apis
 - Broadcasts
 
 ## Further reading
-- [API Docs](https://drive.google.com/file/d/1XSo1WfToh3tsU4iSulaum64K_dvpudxx/view?usp=sharing)
+- [TBP Interaction end point API Docs](https://drive.google.com/file/d/1XSo1WfToh3tsU4iSulaum64K_dvpudxx/view?usp=sharing)
+- [Google Chat API Docs](https://developers.google.com/chat/api/guides)
