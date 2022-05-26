@@ -1,5 +1,8 @@
 # Google Chat Connector
 
+![Screen capture](https://github.com/TheBotPlatform/tbp-google-chat-interaction-endpoint/raw/main/assets/screencap.gif)
+
+
 ## Setup
 
 Visit Google Developer Console and create a new project
